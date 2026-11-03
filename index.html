@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Character encoding standard -->
+  <meta charset="UTF-8">
+
+  <!-- Responsive viewport configuration for mobile, tablet, and desktop devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SOLID Principles Pop-up System (jQuery)</title>
+
+  <!-- External Stylesheet (Design tokens, layout, modal styles, and animations) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Main Application Wrapper -->
+  <main class="container">
+    <div class="card">
+      <!-- Header section with introductory badge and description -->
+      <div class="card-header">
+        <span class="badge">Architecture Demo</span>
+        <h1>Pop-up System using SOLID Principles</h1>
+        <p class="subtitle">Demonstrating 3 distinct pop-up types built with functional SOLID design & jQuery.</p>
+      </div>
+
+      <!-- Interactive Controls and Output Panel -->
+      <div class="card-content">
+        <!-- Grid of Buttons: Each triggers a different pop-up function via js/script.js -->
+        <div class="button-grid">
+          <button id="btn-alert" class="btn btn-primary" type="button" aria-haspopup="dialog">
+            ℹ️ 1. Alert Pop-up
+          </button>
+          <button id="btn-confirm" class="btn btn-danger" type="button" aria-haspopup="dialog">
+            ⚠️ 2. Confirm Pop-up
+          </button>
+          <button id="btn-prompt" class="btn btn-success" type="button" aria-haspopup="dialog">
+            ✏️ 3. Prompt Pop-up
+          </button>
+        </div>
+
+        <!-- Real-time Activity & Lifecycle Log (Displays feedback when user interacts with modals) -->
+        <div class="log-panel">
+          <div class="log-panel-header">Action & Lifecycle Log</div>
+          <div id="action-log" class="log-container" aria-live="polite">
+            <div class="log-entry log-info">
+              <span class="log-time">[System]</span>
+              Ready. Click any of the 3 buttons above to launch a modal.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 1. Local jQuery Library (Required dependency for DOM manipulation) -->
+  <script src="js/jquery.min.js"></script>
+
+  <!-- 2. Functional Modal Library (Defines createModal, showAlert, showConfirm, showPrompt) -->
+  <script src="js/modals.js"></script>
+
+  <!-- 3. Application Script (Consumes the modal library and wires click event listeners) -->
+  <script src="js/script.js"></script>
+</body>
+</html>
