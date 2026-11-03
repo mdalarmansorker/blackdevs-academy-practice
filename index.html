@@ -1,64 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <!-- Character encoding standard -->
+  <!-- Character Encoding & Responsive Viewport -->
   <meta charset="UTF-8">
-
-  <!-- Responsive viewport configuration for mobile, tablet, and desktop devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SOLID Principles Pop-up System (jQuery)</title>
+  <title>Image Polytechnic Institute, Rangpur | ইমেজ পলিটেকনিক ইনস্টিটিউট</title>
+  <meta name="description" content="Image Polytechnic Institute, Rangpur — BTEB approved private polytechnic. Diploma in Civil, Electrical, Computer, Mechanical & Textile Engineering.">
 
-  <!-- External Stylesheet (Design tokens, layout, modal styles, and animations) -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Google Fonts (Playfair Display, Poppins, Noto Sans Bengali) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Main Application Wrapper -->
-  <main class="container">
-    <div class="card">
-      <!-- Header section with introductory badge and description -->
-      <div class="card-header">
-        <span class="badge">Architecture Demo</span>
-        <h1>Pop-up System using SOLID Principles</h1>
-        <p class="subtitle">Demonstrating 3 distinct pop-up types built with functional SOLID design & jQuery.</p>
-      </div>
 
-      <!-- Interactive Controls and Output Panel -->
-      <div class="card-content">
-        <!-- Grid of Buttons: Each triggers a different pop-up function via js/script.js -->
-        <div class="button-grid">
-          <button id="btn-alert" class="btn btn-primary" type="button" aria-haspopup="dialog">
-            ℹ️ 1. Alert Pop-up
+  <!-- ========================================================================
+       FIXED HEADER WRAPPER (Top Branding + Navigation + Breaking News Ticker)
+       ======================================================================== -->
+  <header class="header-fixed-wrap" id="headerWrapper">
+    <!-- TOP BRANDING BAR -->
+    <div class="site-header">
+    <div class="header-inner container">
+      <!-- Institute Brand & Emblem -->
+      <a href="#hero" class="brand">
+        <div class="brand-logo-wrap">
+          <img src="images/logo.png" alt="Image Polytechnic Institute Logo" class="brand-logo">
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">
+            <span class="brand-gold">Image</span> <span class="brand-white">Polytechnic Institute</span>
+          </h1>
+          <p class="brand-tagline">BTEB APPROVED · RANGPUR, BANGLADESH · SINCE 2011</p>
+        </div>
+      </a>
+
+      <!-- Header Action Controls -->
+      <div class="header-actions">
+        <!-- Theme Toggle Button (Dark / Light Mode) -->
+        <button type="button" class="action-btn circle-btn" id="themeToggle" aria-label="Toggle theme mode" title="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Language Switcher Button (Bengali / English) -->
+        <button type="button" class="action-btn circle-btn lang-btn" id="langToggle" aria-label="Switch language" title="Switch English/Bangla">
+          <span id="langText">বাং</span>
+        </button>
+
+        <!-- Student Portal Button -->
+        <button type="button" class="btn-portal" id="btnStudentPortal">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>Student Portal</span>
+        </button>
+
+        <!-- Apply Now Button (Gold Action) -->
+        <button type="button" class="btn-apply" id="btnHeaderApply">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span>Apply Now</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button (Hamburger) -->
+        <button type="button" class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MAIN NAVIGATION BAR
+       ======================================================================== -->
+  <nav class="main-nav" id="mainNav">
+    <div class="container nav-container">
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-item active" data-en="Home" data-bn="হোম">Home</a></li>
+        <li><a href="#about" class="nav-item" data-en="About" data-bn="আমাদের সম্পর্কে">About</a></li>
+        <li><a href="#messages" class="nav-item" data-en="Messages" data-bn="বাণী">Messages</a></li>
+        <li><a href="#programs" class="nav-item" data-en="Programs" data-bn="কোর্স সমূহ">Programs</a></li>
+        <li><a href="#facilities" class="nav-item" data-en="Facilities" data-bn="সুযোগ-সুবিধা">Facilities</a></li>
+        <li><a href="#labs" class="nav-item" data-en="Labs" data-bn="ল্যাবসমূহ">Labs</a></li>
+        <li><a href="#campus-life" class="nav-item" data-en="Campus Life" data-bn="ক্যাম্পাস লাইফ">Campus Life</a></li>
+        <li><a href="#conduct" class="nav-item" data-en="Code of Conduct" data-bn="আচরণবিধি">Code of Conduct</a></li>
+        <li><a href="#admission" class="nav-item" data-en="Admission" data-bn="ভর্তি তথ্য">Admission</a></li>
+        <li><a href="#notices" class="nav-item" data-en="Notices" data-bn="নোটিশ বোর্ড">Notices</a></li>
+        <li><a href="#contact" class="nav-item" data-en="Contact" data-bn="যোগাযোগ">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       BREAKING NEWS / LATEST NOTICES TICKER BAR
+       ======================================================================== -->
+  <aside class="news-ticker" aria-label="Latest Announcements">
+    <!-- Live Badge -->
+    <div class="news-ticker-badge">
+      <span class="ticker-pulse"></span>
+      <i class="fa-solid fa-bullhorn"></i>
+      <span>LATEST</span>
+    </div>
+
+    <!-- Continuous Scrolling Marquee Track -->
+    <div class="news-ticker-viewport">
+      <div class="news-ticker-track">
+        <div class="news-ticker-item">
+          <span class="nt-cat">ADMISSION</span>
+          <span class="nt-text">২০২৬–২৭ শিক্ষাবর্ষে ১৬তম ব্যাচের ভর্তি কার্যক্রম চলছে।</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <div class="news-ticker-item">
+          <span class="nt-cat">GENERAL</span>
+          <span class="nt-text">**ওয়েবসাইট আপডেটের কাজ চলছে!**</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <div class="news-ticker-item">
+          <span class="nt-cat">NOTICE</span>
+          <span class="nt-text">১ম, ৩য়, ৫ম ও ৭ম পর্বের ক্লাস রুটিন এবং ল্যাব শিডিউল প্রকাশিত হয়েছে।</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <div class="news-ticker-item">
+          <span class="nt-cat">BTEB</span>
+          <span class="nt-text">বাংলাদেশ কারিগরি শিক্ষা বোর্ড অনুমোদিত ডিপ্লোমা ইন ইঞ্জিনিয়ারিং শিক্ষাক্রম।</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <!-- Duplicate track items for seamless infinite loop -->
+        <div class="news-ticker-item">
+          <span class="nt-cat">ADMISSION</span>
+          <span class="nt-text">২০২৬–২৭ শিক্ষাবর্ষে ১৬তম ব্যাচের ভর্তি কার্যক্রম চলছে।</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <div class="news-ticker-item">
+          <span class="nt-cat">GENERAL</span>
+          <span class="nt-text">**ওয়েবসাইট আপডেটের কাজ চলছে!**</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <div class="news-ticker-item">
+          <span class="nt-cat">NOTICE</span>
+          <span class="nt-text">১ম, ৩য়, ৫ম ও ৭ম পর্বের ক্লাস রুটিন এবং ল্যাব শিডিউল প্রকাশিত হয়েছে।</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+
+        <div class="news-ticker-item">
+          <span class="nt-cat">BTEB</span>
+          <span class="nt-text">বাংলাদেশ কারিগরি শিক্ষা বোর্ড অনুমোদিত ডিপ্লোমা ইন ইঞ্জিনিয়ারিং শিক্ষাক্রম।</span>
+        </div>
+        <span class="news-ticker-sep">◆</span>
+      </div>
+    </div>
+  </aside>
+  </header>
+
+  <!-- ========================================================================
+       SECTION 1: HERO SECTION
+       ======================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <!-- Left Column: Hero Content & Statistics -->
+      <div class="hero-content">
+        <span class="hero-eyebrow">
+          <i class="fa-solid fa-award"></i> BTEB Approved Private Polytechnic Institute
+        </span>
+
+        <h1 class="hero-title">
+          Building Tomorrow's <span class="gold-gradient-text">Engineers</span>
+        </h1>
+
+        <p class="hero-lead">
+          Empowering northern Bangladesh with practical engineering education, our own modern 10-storey campus in Rangpur, cutting-edge laboratories, NSDA skill certification, and a dedicated 100% job-placement cell.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-ctas">
+          <button type="button" class="btn3d btn-gold" id="btnHeroApply">
+            <i class="fa-solid fa-graduation-cap"></i> Apply for Admission
           </button>
-          <button id="btn-confirm" class="btn btn-danger" type="button" aria-haspopup="dialog">
-            ⚠️ 2. Confirm Pop-up
-          </button>
-          <button id="btn-prompt" class="btn btn-success" type="button" aria-haspopup="dialog">
-            ✏️ 3. Prompt Pop-up
-          </button>
+          <a href="#programs" class="btn3d btn-outline">
+            <i class="fa-solid fa-layer-group"></i> Explore Programs
+          </a>
         </div>
 
-        <!-- Real-time Activity & Lifecycle Log (Displays feedback when user interacts with modals) -->
-        <div class="log-panel">
-          <div class="log-panel-header">Action & Lifecycle Log</div>
-          <div id="action-log" class="log-container" aria-live="polite">
-            <div class="log-entry log-info">
-              <span class="log-time">[System]</span>
-              Ready. Click any of the 3 buttons above to launch a modal.
-            </div>
+        <!-- Mini Statistics Grid -->
+        <div class="mini-stats">
+          <div class="stat-box">
+            <strong class="stat-number">15+</strong>
+            <span class="stat-label">Years of Excellence</span>
+          </div>
+          <div class="stat-box">
+            <strong class="stat-number">5</strong>
+            <span class="stat-label">Technologies</span>
+          </div>
+          <div class="stat-box">
+            <strong class="stat-number">850</strong>
+            <span class="stat-label">Seats / Batch</span>
+          </div>
+          <div class="stat-box">
+            <strong class="stat-number">100%</strong>
+            <span class="stat-label">Job Support</span>
           </div>
         </div>
       </div>
-    </div>
-  </main>
 
-  <!-- 1. Local jQuery Library (Required dependency for DOM manipulation) -->
+      <!-- Right Column: Institution at a Glance Glass Card -->
+      <aside class="hero-card">
+        <div class="card-glow"></div>
+        <h3 class="card-title">
+          <i class="fa-solid fa-building-columns"></i> Institution at a Glance
+        </h3>
+        <ul class="glance-list">
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <strong>BTEB Approved Institute</strong>
+              <p>Government Approved & Curriculum Affiliated (Code: 13180)</p>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <strong>NSDA Certified Skill Center</strong>
+              <p>National Skills Development Authority Recognized</p>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <strong>Own 10-Storey Modern Campus</strong>
+              <p>Equipped with specialized labs, central library & seminar hall</p>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <strong>Expert Faculty from BUET, RUET & DUET</strong>
+              <p>Experienced mentor panel for practical industry training</p>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 2: ABOUT THE INSTITUTE & LEADERSHIP MESSAGES
+       ======================================================================== -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-head">
+        <span class="eyebrow">ABOUT THE INSTITUTE</span>
+        <h2 class="section-title">
+          ইমেজ পলিটেকনিক ইনস্টিটিউট · <span class="gold-text">Excellence in Technical Education</span>
+        </h2>
+        <div class="gold-rule"></div>
+        <p class="section-subtitle">
+          Established in 2011 in Rangpur, Image Polytechnic Institute stands as a premier technical education institution in North Bengal, committed to molding skilled professionals for Bangladesh's industrial modernization.
+        </p>
+      </div>
+
+      <!-- Leadership Messages Grid -->
+      <div class="msg-grid" id="messages">
+        <!-- Chairman Message Card -->
+        <article class="msg-card">
+          <div class="msg-photo-wrap">
+            <img src="images/chairman.jpg" alt="Chairman Engr. Md. Almamun Akhtaruzzaman" class="msg-photo">
+            <span class="role-badge">Chairman</span>
+          </div>
+          <div class="msg-body">
+            <h3 class="msg-name">Engr. Md. Almamun Akhtaruzzaman</h3>
+            <p class="msg-designation">Chairman, Image Polytechnic Institute & B.Sc in Civil Engineering</p>
+            <blockquote class="msg-quote">
+              "Technical education is the foundation of economic transformation. At Image Polytechnic Institute, we ensure that every student masters hands-on practical skills aligned with current international standards."
+            </blockquote>
+            <button type="button" class="btn-read-msg" id="btnChairmanMsg">
+              <i class="fa-solid fa-comment-dots"></i> Read Full Message
+            </button>
+          </div>
+        </article>
+
+        <!-- Principal Message Card -->
+        <article class="msg-card">
+          <div class="msg-photo-wrap">
+            <img src="images/principal.jpg" alt="Principal Engr. Md. Mokbular Rahman" class="msg-photo">
+            <span class="role-badge">Principal</span>
+          </div>
+          <div class="msg-body">
+            <h3 class="msg-name">Engr. Md. Mokbular Rahman</h3>
+            <p class="msg-designation">Principal, Image Polytechnic Institute & B.Sc in Mechanical Engineering</p>
+            <blockquote class="msg-quote">
+              "Our dedicated faculty, modern laboratory infrastructure, and disciplined environment provide our students with the optimal platform to become leaders in engineering and industrial innovation."
+            </blockquote>
+            <button type="button" class="btn-read-msg" id="btnPrincipalMsg">
+              <i class="fa-solid fa-comment-dots"></i> Read Full Message
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 3: 4-YEAR DIPLOMA ENGINEERING PROGRAMS
+       ======================================================================== -->
+  <section class="programs-section" id="programs">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-head">
+        <span class="eyebrow">DIPLOMA PROGRAMS</span>
+        <h2 class="section-title">
+          4-Year Diploma in <span class="gold-text">Engineering Technologies</span>
+        </h2>
+        <div class="gold-rule"></div>
+        <p class="section-subtitle">
+          BTEB-approved curriculum offering 8 comprehensive semesters of theoretical, laboratory, and industrial attachment training.
+        </p>
+      </div>
+
+      <!-- Technologies Card Grid -->
+      <div class="prog-grid">
+        <!-- 1. Computer Technology -->
+        <article class="prog-card" data-tech="computer">
+          <div class="prog-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3 class="prog-title">Computer Technology</h3>
+          <span class="prog-meta">Duration: 4 Years · 8 Semesters</span>
+          <p class="prog-desc">
+            Focuses on software engineering, web technologies, computer networking, AI integration, hardware maintenance, and cyber security fundamentals.
+          </p>
+          <ul class="prog-highlights">
+            <li><i class="fa-solid fa-check"></i> High-speed Network & Server Lab</li>
+            <li><i class="fa-solid fa-check"></i> Python, Java, JavaScript & Database</li>
+            <li><i class="fa-solid fa-check"></i> IT Industry Placement Assistance</li>
+          </ul>
+          <button type="button" class="btn-prog-apply" data-program="Computer Technology">
+            <i class="fa-solid fa-paper-plane"></i> Apply for This Course
+          </button>
+        </article>
+
+        <!-- 2. Civil Technology -->
+        <article class="prog-card" data-tech="civil">
+          <div class="prog-icon"><i class="fa-solid fa-building"></i></div>
+          <h3 class="prog-title">Civil Technology</h3>
+          <span class="prog-meta">Duration: 4 Years · 8 Semesters</span>
+          <p class="prog-desc">
+            Covers modern structural engineering, surveying instruments, soil mechanics, concrete technology, and AutoCAD/BIM design for infrastructure development.
+          </p>
+          <ul class="prog-highlights">
+            <li><i class="fa-solid fa-check"></i> Advanced Surveying & Total Station Lab</li>
+            <li><i class="fa-solid fa-check"></i> Material Testing & Hydraulics Lab</li>
+            <li><i class="fa-solid fa-check"></i> Real-world Site Inspection Training</li>
+          </ul>
+          <button type="button" class="btn-prog-apply" data-program="Civil Technology">
+            <i class="fa-solid fa-paper-plane"></i> Apply for This Course
+          </button>
+        </article>
+
+        <!-- 3. Electrical Technology -->
+        <article class="prog-card" data-tech="electrical">
+          <div class="prog-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="prog-title">Electrical Technology</h3>
+          <span class="prog-meta">Duration: 4 Years · 8 Semesters</span>
+          <p class="prog-desc">
+            Specializes in power transmission, industrial circuit wiring, substation automation, renewable energy, and electrical machinery controls.
+          </p>
+          <ul class="prog-highlights">
+            <li><i class="fa-solid fa-check"></i> High-Voltage Power & Machine Lab</li>
+            <li><i class="fa-solid fa-check"></i> Industrial Automation & PLC Training</li>
+            <li><i class="fa-solid fa-check"></i> Direct Substation Field Attachments</li>
+          </ul>
+          <button type="button" class="btn-prog-apply" data-program="Electrical Technology">
+            <i class="fa-solid fa-paper-plane"></i> Apply for This Course
+          </button>
+        </article>
+
+        <!-- 4. Mechanical Technology -->
+        <article class="prog-card" data-tech="mechanical">
+          <div class="prog-icon"><i class="fa-solid fa-gears"></i></div>
+          <h3 class="prog-title">Mechanical Technology</h3>
+          <span class="prog-meta">Duration: 4 Years · 8 Semesters</span>
+          <p class="prog-desc">
+            Instruction in thermodynamics, automobile engineering, machine design, CNC lathe machining, manufacturing processes, and industrial safety.
+          </p>
+          <ul class="prog-highlights">
+            <li><i class="fa-solid fa-check"></i> Dedicated Lathe, Welding & CNC Workshops</li>
+            <li><i class="fa-solid fa-check"></i> Automobile Engine Testing Setup</li>
+            <li><i class="fa-solid fa-check"></i> Heavy Machinery Maintenance</li>
+          </ul>
+          <button type="button" class="btn-prog-apply" data-program="Mechanical Technology">
+            <i class="fa-solid fa-paper-plane"></i> Apply for This Course
+          </button>
+        </article>
+
+        <!-- 5. Textile Technology -->
+        <article class="prog-card" data-tech="textile">
+          <div class="prog-icon"><i class="fa-solid fa-shirt"></i></div>
+          <h3 class="prog-title">Textile Technology</h3>
+          <span class="prog-meta">Duration: 4 Years · 8 Semesters</span>
+          <p class="prog-desc">
+            Trains students for Bangladesh's booming garments sector: yarn manufacturing, fabric design, dyeing, wet processing, and garment quality control.
+          </p>
+          <ul class="prog-highlights">
+            <li><i class="fa-solid fa-check"></i> Spinning, Weaving & Wet Processing Lab</li>
+            <li><i class="fa-solid fa-check"></i> Garments Merchandising Curriculum</li>
+            <li><i class="fa-solid fa-check"></i> 100% Industry Demand in RMG</li>
+          </ul>
+          <button type="button" class="btn-prog-apply" data-program="Textile Technology">
+            <i class="fa-solid fa-paper-plane"></i> Apply for This Course
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Image Polytechnic Institute, Rangpur. All rights reserved. BTEB Approved Institution.</p>
+      <p class="footer-links">
+        <a href="#hero">Back to Top</a> · 
+        <a href="#about">About</a> · 
+        <a href="#programs">Technologies</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       SCRIPTS (Preserving Local jQuery & Functional SOLID Modals)
+       ======================================================================== -->
+  <!-- 1. Local jQuery Library -->
   <script src="js/jquery.min.js"></script>
 
-  <!-- 2. Functional Modal Library (Defines createModal, showAlert, showConfirm, showPrompt) -->
+  <!-- 2. Functional Modal Architecture Engine (SOLID Principles) -->
   <script src="js/modals.js"></script>
 
-  <!-- 3. Application Script (Consumes the modal library and wires click event listeners) -->
+  <!-- 3. Application Controller Script -->
   <script src="js/script.js"></script>
 </body>
 </html>
